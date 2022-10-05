@@ -24,7 +24,7 @@ class Movie < ActiveRecord::Base
 
 
     # return self.all_ratings
-    return Movie.where(rating: ratings_list)
+    return Movie.where({rating: ratings_list})
   end
 
   def self.all_ratings #static methods have to start with self.

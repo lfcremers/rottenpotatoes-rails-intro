@@ -10,20 +10,52 @@ class MoviesController < ApplicationController
 
   #when you get ratings from params, it gets you the hash map;
   def index
-    puts 'in index function'
-    @all_ratings = Movie.all_ratings
-    @movies = Movie.all #this is right
-    # @ratings_to_show = Movie.with_ratings(params[:ratings].keys)
+    #what's the whole $cnt thing?
+
     @ratings_to_show = Movie.all_ratings
+<<<<<<< Updated upstream
+    @all_ratings = Movie.all_ratings
+    @movies = Movie.all
+
+    sorting = nil
+    boxes_selected = nil
+
+    if params[:sorting_column]
+      sorting = params[:sorting_column]
+      session[:sorting_column] = sorting
+    end 
+    if session[:sorting_column]
+      sorting = session[:sorting_column]
+    end
+    
+    if sorting == 'title'
+      @title_header = 'hilite'
+    elsif sorting == 'release_date'
+      @release_date_header = 'hilite'
+    end
+=======
+
+    selected_boxes = nil
+>>>>>>> Stashed changes
+
     if params[:ratings].nil?
-      puts 'nil params ratings'
       @ratings_to_show = []
+<<<<<<< Updated upstream
       # @movies = []
+    else
+=======
+      @movies = []
     elsif
       puts 'not nil params ratings'
+>>>>>>> Stashed changes
       @ratings_to_show = Movie.with_ratings(params[:ratings].keys)
-      @movies = Movie.with_ratings(params[:ratings].keys)
+    @movies = Movie.with_ratings(selected_boxes)
     end 
+
+    if session[:ratings]
+      @ratings_to_show = session[:ratings]
+    end
+
   end
 
   def new
@@ -41,8 +73,7 @@ class MoviesController < ApplicationController
     flash[:notice] = "#{@movie.title} was successfully created."
     @all_ratings = Movie.all_ratings
     @ratings_to_show = []  #how exactly to populate this if things get checked?
-    #redirect it to movies path; the movies path will have the data
-    redirect_to movies_path #what does this line do?
+    redirect_to movies_path #this redirects the url
   end
 
   def edit
@@ -70,6 +101,6 @@ class MoviesController < ApplicationController
   # Making "internal" methods private is not required, but is a common practice.
   # This helps make clear which methods respond to requests, and which ones do not.
   def movie_params
-    params.require(:movie).permit(:title, :rating, :description, :release_date)
+    params.require(:movie).permit(:title, :rating, :description, :release_date, :sorting_column)
   end
 end
