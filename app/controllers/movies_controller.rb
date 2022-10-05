@@ -1,37 +1,50 @@
 class MoviesController < ApplicationController
 
   def show
-    id = params[:id] # retrieve movie ID from URI route #where does params come from and where is it defined to have :id?
+    puts 'entering show method'
+    id = params[:id] # retrieve movie ID from URI route 
+
     @movie = Movie.find(id) # look up movie by unique ID
     # will render app/views/movies/show.<extension> by default
   end
 
+  #when you get ratings from params, it gets you the hash map;
   def index
+    puts 'entering index method'
     @movies = Movie.all
+    @all_ratings = Movie.all_ratings
+    puts params[:ratings].keys()
+    @ratings_to_show = params[:ratings].keys
+    #Movie.with_ratings(params[:ratings].keys)
+    
   end
 
   def new
+    puts 'entering new method'
     # default: render 'new' template
   end  
 
   def self.all_ratings
-    return @@all_ratings
+    return @all_ratings
   end
 
   def create
+    puts 'entering create method'
     @movie = Movie.create!(movie_params)
     flash[:notice] = "#{@movie.title} was successfully created."
-    redirect_to movies_path
-    @@all_ratings = Movie.all_ratings
-    @@ratings_to_show = []  #how exactly to populate this if things get checked?
+    @all_ratings = Movie.all_ratings
+    @ratings_to_show = []  #how exactly to populate this if things get checked?
+    #redirect it to movies path; the movies path will have the data
+    redirect_to movies_path #what does this line do?
   end
 
-
   def edit
+    puts 'entering edit method'
     @movie = Movie.find params[:id]
   end
 
   def update
+    puts 'entering update method'
     @movie = Movie.find params[:id]
     @movie.update_attributes!(movie_params)
     flash[:notice] = "#{@movie.title} was successfully updated."
@@ -39,6 +52,7 @@ class MoviesController < ApplicationController
   end
 
   def destroy
+    puts 'entering destroy method'
     @movie = Movie.find(params[:id])
     @movie.destroy
     flash[:notice] = "Movie '#{@movie.title}' deleted."

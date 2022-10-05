@@ -13,6 +13,7 @@
     </tr>
   </thead>
   <tbody>
+
     <% @movies.each do |movie| %>
       <tr>
         <td>
@@ -33,6 +34,8 @@
 </table>
 <%= link_to 'Add new movie', new_movie_path, :class => 'btn btn-primary' %>
 
+
+
 <%= form_tag movies_path, method: :get, id: 'ratings_form' do %>
   Include:
   <% @all_ratings.each do |rating| %>
@@ -42,4 +45,11 @@
     </div>
   <% end %>
   <%= submit_tag 'Refresh', id: 'ratings_submit', class: 'btn btn-primary' %>
+<% end %>
+
+
+<% if false %>
+<script>
+  console.log(@movies);
+</script>
 <% end %>
