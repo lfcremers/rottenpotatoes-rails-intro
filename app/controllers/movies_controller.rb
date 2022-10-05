@@ -10,13 +10,12 @@ class MoviesController < ApplicationController
 
   #when you get ratings from params, it gets you the hash map;
   def index
-    puts 'entering index method'
-    # @movies = Movie.all
+
     @all_ratings = Movie.all_ratings
     
     if params[:ratings].nil?
-      @ratings_to_show = @all_ratings
-      @movies = Movie.all
+      @ratings_to_show = []
+      @movies = []
     elsif
       @ratings_to_show = Movie.with_ratings(params[:ratings].keys)
       @movies = Movie.with_ratings(params[:ratings].keys)
