@@ -10,45 +10,39 @@ class MoviesController < ApplicationController
 
   #when you get ratings from params, it gets you the hash map;
   def index
-<<<<<<< HEAD
 
     @ratings_to_show = Movie.all_ratings
-=======
-    puts 'entering index method'
-    # @movies = Movie.all
->>>>>>> parent of cab46a7... part 1 more or less finished
     @all_ratings = Movie.all_ratings
     @movies = Movie.all
 
-    sorting = nil
-    boxes_selected = nil
+    # sorting = nil
+    # boxes_selected = nil
 
-    if params[:sorting_column]
-      sorting = params[:sorting_column]
-      session[:sorting_column] = sorting
-    end 
-    if session[:sorting_column]
-      sorting = session[:sorting_column]
-    end
+    # if params[:sorting_column]
+    #   sorting = params[:sorting_column]
+    #   session[:sorting_column] = sorting
+    # end 
+    # if session[:sorting_column]
+    #   sorting = session[:sorting_column]
+    # end
     
-    if sorting == 'title'
-      @title_header = 'hilite'
-    elsif sorting == 'release_date'
-      @release_date_header = 'hilite'
-    end
+    # if sorting == 'title'
+    #   @title_header = 'hilite'
+    # elsif sorting == 'release_date'
+    #   @release_date_header = 'hilite'
+    # end
 
     if params[:ratings].nil?
       @ratings_to_show = @all_ratings
-      @movies = Movie.all
     elsif
+      @ratings_to_show = params[:ratings].keys
+      @movies = Movie.with_ratings(params[:ratings].keys)
       puts 'not nil params ratings'
-      @ratings_to_show = Movie.with_ratings(params[:ratings].keys)
-    @movies = Movie.with_ratings(selected_boxes)
     end 
 
-    if session[:ratings]
-      @ratings_to_show = session[:ratings]
-    end
+    # if session[:ratings]
+    #   @ratings_to_show = session[:ratings]
+    # end
 
   end
 
