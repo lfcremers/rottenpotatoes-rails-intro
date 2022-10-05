@@ -10,7 +10,6 @@ class MoviesController < ApplicationController
 
   #when you get ratings from params, it gets you the hash map;
   def index
-    #what's the whole $cnt thing?
 
     @ratings_to_show = Movie.all_ratings
     @all_ratings = Movie.all_ratings
@@ -34,8 +33,8 @@ class MoviesController < ApplicationController
     end
 
     if params[:ratings].nil?
-      @ratings_to_show = []
-      @movies = []
+      @ratings_to_show = @all_ratings
+      @movies = Movie.all
     elsif
       puts 'not nil params ratings'
       @ratings_to_show = Movie.with_ratings(params[:ratings].keys)
