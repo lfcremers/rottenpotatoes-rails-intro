@@ -10,8 +10,13 @@ class MoviesController < ApplicationController
 
   #when you get ratings from params, it gets you the hash map;
   def index
+<<<<<<< HEAD
 
     @ratings_to_show = Movie.all_ratings
+=======
+    puts 'entering index method'
+    # @movies = Movie.all
+>>>>>>> parent of cab46a7... part 1 more or less finished
     @all_ratings = Movie.all_ratings
     @movies = Movie.all
 
