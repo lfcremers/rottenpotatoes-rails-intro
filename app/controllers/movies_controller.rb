@@ -12,12 +12,18 @@ class MoviesController < ApplicationController
 
   def new
     # default: render 'new' template
-  end
+  end  
 
+  def self.all_ratings
+    return @@all_ratings
+  end
+  
   def create
     @movie = Movie.create!(movie_params)
     flash[:notice] = "#{@movie.title} was successfully created."
     redirect_to movies_path
+    @@all_ratings = Movie.all_ratings
+    @@ratings_to_show = []  #how exactly to populate this if things get checked?
   end
 
   def edit
