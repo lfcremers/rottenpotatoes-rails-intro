@@ -13,7 +13,6 @@ class MoviesController < ApplicationController
     #what's the whole $cnt thing?
 
     @ratings_to_show = Movie.all_ratings
-<<<<<<< Updated upstream
     @all_ratings = Movie.all_ratings
     @movies = Movie.all
 
@@ -33,21 +32,12 @@ class MoviesController < ApplicationController
     elsif sorting == 'release_date'
       @release_date_header = 'hilite'
     end
-=======
-
-    selected_boxes = nil
->>>>>>> Stashed changes
 
     if params[:ratings].nil?
       @ratings_to_show = []
-<<<<<<< Updated upstream
-      # @movies = []
-    else
-=======
       @movies = []
     elsif
       puts 'not nil params ratings'
->>>>>>> Stashed changes
       @ratings_to_show = Movie.with_ratings(params[:ratings].keys)
     @movies = Movie.with_ratings(selected_boxes)
     end 
