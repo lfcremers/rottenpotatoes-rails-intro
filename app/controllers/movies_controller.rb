@@ -1,7 +1,7 @@
 class MoviesController < ApplicationController
 
   def show
-    id = params[:id] # retrieve movie ID from URI route
+    id = params[:id] # retrieve movie ID from URI route #where does params come from and where is it defined to have :id?
     @movie = Movie.find(id) # look up movie by unique ID
     # will render app/views/movies/show.<extension> by default
   end
@@ -17,7 +17,7 @@ class MoviesController < ApplicationController
   def self.all_ratings
     return @@all_ratings
   end
-  
+
   def create
     @movie = Movie.create!(movie_params)
     flash[:notice] = "#{@movie.title} was successfully created."
@@ -25,6 +25,7 @@ class MoviesController < ApplicationController
     @@all_ratings = Movie.all_ratings
     @@ratings_to_show = []  #how exactly to populate this if things get checked?
   end
+
 
   def edit
     @movie = Movie.find params[:id]
