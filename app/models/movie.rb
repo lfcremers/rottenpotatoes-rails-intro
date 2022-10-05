@@ -11,18 +11,20 @@ class Movie < ActiveRecord::Base
     #write down instance method vs class method
     if ratings_list.nil?
       puts 'the with_ratings input is nil'
-      puts
+      
       return self.all_ratings
-    elsif 
-      puts 'the with_ratings input is not nil'
-      puts ratings_list
+    # elsif 
+    #   puts 'the with_ratings input is not nil'
+    #   puts ratings_list
     end
-    
-    puts 'putting ActiveRecord'
-    puts Movie.where()
-    puts Hash
+    # puts 'putting potential return items'
+    # puts Movie.where(rating: ratings_list)
+    # puts 'putting Movie.all'
+    # puts Movie.all
 
-    return self.all_ratings
+
+    # return self.all_ratings
+    return Movie.where(rating: ratings_list)
   end
 
   def self.all_ratings #static methods have to start with self.
