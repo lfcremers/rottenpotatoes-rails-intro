@@ -6,7 +6,7 @@
 <table class="table table-striped col-md-12" id="movies">
   <thead>
     <tr>
-      <th <% if link_to movies_path("sort_by"=> "column") %>; <a id = "title_header" class = "p-3 mb-2 bg-warning text-blue" class = "hilite"  >Movie Header </a> <% end; %> </th>
+      <th <% if link_to movies_path({"sort_by":"column"}) %> <a id = "title_header" class = "p-3 mb-2 bg-warning text-blue" class = "hilite"  >Movie Header </a> <% else %> Movie(else) Header <% end %> </th>
       <th>Rating</th>
       <th><a id = "release_date_header" class = "p-3 mb-2 bg-warning text-blue" class = "hilite" >Release Date </a>  </th>
       <th> More Info</th>

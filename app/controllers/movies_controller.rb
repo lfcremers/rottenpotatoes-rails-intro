@@ -16,7 +16,6 @@ class MoviesController < ApplicationController
     @movies = Movie.all
 
     @sorting = nil
-    # @boxes_selected = nil
     
     if params[:sorting_column]
       @sorting = params[:sorting_column]
@@ -32,9 +31,6 @@ class MoviesController < ApplicationController
     if @sorting == 'release_date'
       @release_date_header = 'hilite' 
     end
-
-    puts params
-    puts session.keys
 
     if session[:ratings] and not params[:ratings]
       @ratings_to_show = session[:ratings]
@@ -54,7 +50,9 @@ class MoviesController < ApplicationController
     session[:full_ratings] = params[:ratings]
     session[:sorting_column] = @sorting
 
-    
+    puts params   
+    puts session.keys
+    puts session[:sorting_column] 
   end
 
   def new
