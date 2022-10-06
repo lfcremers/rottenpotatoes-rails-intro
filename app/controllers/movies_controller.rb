@@ -59,7 +59,7 @@ class MoviesController < ApplicationController
       elsif not session[:full_ratings] and session[:sorting_column]
         redirect_to movies_path("sorting_column" => session[:sorting_column])
       elsif session[:full_ratings] and session[:sorting_column]
-        redirect_to movies_path("ratings" => session[:full_ratings])
+        redirect_to movies_path("ratings" => session[:full_ratings], "sorting_column" => session[:sorting_column])
       end
     end
 
