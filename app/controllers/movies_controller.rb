@@ -56,10 +56,13 @@ class MoviesController < ApplicationController
     if not params[:ratings] and not params[:sorting_column]
       if session[:full_ratings] and not session[:sorting_column]
         redirect_to movies_path("ratings" => session[:full_ratings])
+        return 
       elsif not session[:full_ratings] and session[:sorting_column]
         redirect_to movies_path("sorting_column" => session[:sorting_column])
+        return
       elsif session[:full_ratings] and session[:sorting_column]
         redirect_to movies_path("ratings" => session[:full_ratings], "sorting_column" => session[:sorting_column])
+        return
       end
     end
 
