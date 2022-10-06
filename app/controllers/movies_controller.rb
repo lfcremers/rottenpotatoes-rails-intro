@@ -28,10 +28,12 @@ class MoviesController < ApplicationController
     if @sorting == 'movie_title'
       @title_header = 'hilite p-3 mb-2 bg-warning text-dark'
       puts 'assigning title_header'
+      @title = 'hilite p-3 mb-2 bg-warning text-dark'
     end #sould there be an elsif statement instead?
     if @sorting == 'release_date'
       @release_date_header = 'hilite p-3 mb-2 bg-warning text-dark'
       puts 'assigning release_date_header'
+      @release_date = 'hilite p-3 mb-2 bg-warning text-dark'
     end
 
     if session[:ratings] and not params[:ratings]
