@@ -29,7 +29,7 @@ class MoviesController < ApplicationController
     if @sorting == 'title'
       @title_header = 'hilite'
     elsif @sorting == 'release_date'
-      @release_date_header = 'hilite'
+      @release_date_header = 'hilite' 
     end
 
     if session[:ratings] and not params[:ratings]
@@ -46,9 +46,11 @@ class MoviesController < ApplicationController
       puts 'not nil params ratings'
       
     end 
+
     session[:ratings] = @ratings_to_show
     session[:full_ratings] = params[:ratings]
     session[:sorting_column] = @sorting
+
   end
 
   def new
@@ -95,3 +97,5 @@ class MoviesController < ApplicationController
     params.require(:movie).permit(:title, :rating, :description, :release_date, :sorting_column)
   end
 end
+
+
