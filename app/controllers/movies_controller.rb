@@ -50,8 +50,11 @@ class MoviesController < ApplicationController
     session[:full_ratings] = params[:ratings]
     session[:sorting_column] = @sorting
 
-    puts params   
+    puts 'putting params:'
+    puts params  
+    puts 'putting session keys:' 
     puts session.keys
+    puts 'putting sorting column from session:'
     puts session[:sorting_column] 
   end
 
