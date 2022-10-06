@@ -14,14 +14,17 @@ class MoviesController < ApplicationController
     @ratings_to_show = Movie.all_ratings
     @all_ratings = Movie.all_ratings
     @movies = Movie.all
-
+    
     @sorting = nil
     
+
     if params[:sorting_column]  
       @sorting = params[:sorting_column]
       session[:sorting_column] = @sorting
     elsif session[:sorting_column]
       @sorting = session[:sorting_column]
+    else
+      redirect_to movies_path(:sorting_column=>@sorting, :ratings=>(@ratings_to_show),:home => "1")
     end
 
     if @sorting == 'title'
