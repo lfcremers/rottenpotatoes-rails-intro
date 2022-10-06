@@ -17,15 +17,14 @@ class MoviesController < ApplicationController
 
     @sorting = nil
     
-    if params[:sorting_column]
+    if params[:sorting_column]  
       @sorting = params[:sorting_column]
       session[:sorting_column] = @sorting
-    end 
-    if session[:sorting_column]
+    elsif session[:sorting_column]
       @sorting = session[:sorting_column]
     end
 
-    if @sorting == 'movie_title'
+    if @sorting == 'title'
       @title_header = 'hilite p-3 mb-2 bg-warning text-dark'
       puts 'assigning title_header'
       @title = 'hilite p-3 mb-2 bg-warning text-dark'
