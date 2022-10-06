@@ -15,35 +15,35 @@ class MoviesController < ApplicationController
     @all_ratings = Movie.all_ratings
     @movies = Movie.all
 
-    # sorting = nil
-    # boxes_selected = nil
-
-    # if params[:sorting_column]
-    #   sorting = params[:sorting_column]
-    #   session[:sorting_column] = sorting
-    # end 
-    # if session[:sorting_column]
-    #   sorting = session[:sorting_column]
-    # end
+    @sorting = nil
+    @boxes_selected = nil
     
-    # if sorting == 'title'
-    #   @title_header = 'hilite'
-    # elsif sorting == 'release_date'
-    #   @release_date_header = 'hilite'
-    # end
+    if params[:sorting_column]
+      @sorting = params[:sorting_column]
+      session[:sorting_column] = @sorting
+    end 
+    if session[:sorting_column]
+      @sorting = session[:sorting_column]
+    end
+
+    if @sorting == 'title'
+      @title_header = 'hilite'
+    elsif @sorting == 'release_date'
+      @release_date_header = 'hilite'
+    end
 
     if params[:ratings].nil?
       @ratings_to_show = @all_ratings
+      
     elsif
       @ratings_to_show = params[:ratings].keys
-      @movies = Movie.with_ratings(params[:ratings].keys)
+      @movies = Movie.with_ratings(@sorting, params[:ratings].keys)
       puts 'not nil params ratings'
+      
     end 
-
-    # if session[:ratings]
-    #   @ratings_to_show = session[:ratings]
-    # end
-
+    session[:ratings] = @ratings_to_show
+    session[:full_ratings] = params[:ratings]
+    session[:sorting_column] = @sorting
   end
 
   def new
@@ -59,8 +59,6 @@ class MoviesController < ApplicationController
     puts 'entering create method'
     @movie = Movie.create!(movie_params)
     flash[:notice] = "#{@movie.title} was successfully created."
-    @all_ratings = Movie.all_ratings
-    @ratings_to_show = []  #how exactly to populate this if things get checked?
     redirect_to movies_path #this redirects the url
   end
 
