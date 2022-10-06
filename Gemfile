@@ -12,7 +12,7 @@ gem 'uglifier', '>= 1.3.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
-
+#gem 'sqlite3', git: "https://github.com/larskanis/sqlite3-ruby"
 # Use Unicorn as the app server
 # gem 'unicorn'
 
@@ -28,7 +28,7 @@ group :development, :test do
 
   gem 'rspec-rails'
   gem 'guard-rspec'
-
+  #gem 'sqlite3', git: "https://github.com/larskanis/sqlite3-ruby"
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3', '~> 1.3.6'
 
@@ -39,4 +39,5 @@ end
 group :production do
   gem 'pg', '~> 0.21' # for Heroku deployment
   gem 'rails_12factor'
+  #gem 'sqlite3', git: "https://github.com/larskanis/sqlite3-ruby"
 end
