@@ -32,6 +32,11 @@ class MoviesController < ApplicationController
       @release_date_header = 'hilite'
     end
 
+    if session[:ratings] and not params[:ratings]
+      @ratings_to_show = session[:ratings]
+      params[:ratings] = session[:full_ratings]
+    end
+
     if params[:ratings].nil?
       @ratings_to_show = @all_ratings
       
