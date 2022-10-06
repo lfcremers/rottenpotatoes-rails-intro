@@ -2,10 +2,8 @@ class Movie < ActiveRecord::Base
   @all_ratings = ['G','PG','PG-13','R']
   
   def self.with_ratings(column, ratings_list)
-    puts 'entering with_ratings in Movie class'
 
     if not column and not ratings_list
-      puts 'the with_ratings input is nil'
       
       return self.all_ratings
     elsif column and not ratings_list
