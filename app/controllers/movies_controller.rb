@@ -26,10 +26,12 @@ class MoviesController < ApplicationController
     end
 
     if @sorting == 'movie_title'
-      @title_header = 'hilite'
+      @title_header = 'hilite p-3 mb-2 bg-warning text-dark'
+      puts 'assigning title_header'
     end #sould there be an elsif statement instead?
     if @sorting == 'release_date'
-      @release_date_header = 'hilite' 
+      @release_date_header = 'hilite p-3 mb-2 bg-warning text-dark'
+      puts 'assigning release_date_header'
     end
 
     if session[:ratings] and not params[:ratings]
@@ -49,6 +51,16 @@ class MoviesController < ApplicationController
     session[:ratings] = @ratings_to_show
     session[:full_ratings] = params[:ratings]
     session[:sorting_column] = @sorting
+
+    if not params[:ratings] and not params[:sorting_column]
+      if session[:full_ratings] and not session[:sorting_column]
+        redirect_to movies_path("ratings" => session[:full_ratings])
+      elsif not session[:full_ratings] and session[:sorting_column]
+        redirect_to movies_path("sorting_column" => session[:sorting_column])
+      elsif session[:full_ratings] and session[:sorting_column]
+        redirect_to movies_path("ratings" => session[:full_ratings])
+      end
+    end
 
     puts 'putting params:'
     puts params  
