@@ -22,9 +22,9 @@ class MoviesController < ApplicationController
       session[:sorting_column] = @sorting
     elsif session[:sorting_column]
       @sorting = session[:sorting_column]
-    else
-      redirect_to movies_path(:sorting_column=>@sorting, :ratings=>(@ratings_to_show),:home => "1")
-    end
+    # else
+    #   redirect_to movies_path(:sorting_column=>@sorting, :ratings=>(@ratings_to_show),:home => "1")
+    # end
 
     if @sorting == 'title'
       @title_header = 'hilite p-3 mb-2 bg-warning text-dark'
@@ -45,28 +45,28 @@ class MoviesController < ApplicationController
     if params[:ratings].nil?
       @ratings_to_show = @all_ratings
       
-    # elsif
-    #   @ratings_to_show = params[:ratings].keys
-    #   @movies = Movie.with_ratings(@sorting, params[:ratings].keys)
+    elsif
+      @ratings_to_show = params[:ratings].keys
+      @movies = Movie.with_ratings(@sorting, params[:ratings].keys)
       
     end 
 
-    #session[:ratings] = @ratings_to_show
-    # session[:full_ratings] = params[:ratings]
-    # session[:sorting_column] = @sorting
+    session[:ratings] = @ratings_to_show
+    session[:full_ratings] = params[:ratings]
+    session[:sorting_column] = @sorting
 
-    # if not params[:ratings] and not params[:sorting_column]
-    #   if session[:full_ratings] and not session[:sorting_column]
-    #     redirect_to movies_path("ratings" => session[:full_ratings])
-    #     return 
-    #   elsif not session[:full_ratings] and session[:sorting_column]
-    #     redirect_to movies_path("sorting_column" => session[:sorting_column])
-    #     return
-    #   elsif session[:full_ratings] and session[:sorting_column]
-    #     redirect_to movies_path("ratings" => session[:full_ratings], "sorting_column" => session[:sorting_column])
-    #     return
-    #   end
-    # end
+    if not params[:ratings] and not params[:sorting_column]
+      if session[:full_ratings] and not session[:sorting_column]
+        redirect_to movies_path("ratings" => session[:full_ratings])
+        return 
+      elsif not session[:full_ratings] and session[:sorting_column]
+        redirect_to movies_path("sorting_column" => session[:sorting_column])
+        return
+      elsif session[:full_ratings] and session[:sorting_column]
+        redirect_to movies_path("ratings" => session[:full_ratings], "sorting_column" => session[:sorting_column])
+        return
+      end
+    end
 
     puts 'putting params:'
     puts params  
