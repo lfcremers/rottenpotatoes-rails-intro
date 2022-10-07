@@ -24,7 +24,7 @@ class MoviesController < ApplicationController
       @sorting = session[:sorting_column]
     # else
     #   redirect_to movies_path(:sorting_column=>@sorting, :ratings=>(@ratings_to_show),:home => "1")
-    # end
+    end
 
     if @sorting == 'title'
       @title_header = 'hilite p-3 mb-2 bg-warning text-dark'
