@@ -49,7 +49,7 @@ class MoviesController < ApplicationController
     #   @ratings_to_show = params[:ratings].keys
     #   @movies = Movie.with_ratings(@sorting, params[:ratings].keys)
       
-    # end 
+    end 
 
     #session[:ratings] = @ratings_to_show
     # session[:full_ratings] = params[:ratings]
