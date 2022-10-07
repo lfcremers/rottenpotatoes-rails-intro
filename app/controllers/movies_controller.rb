@@ -51,7 +51,7 @@ class MoviesController < ApplicationController
       
     end 
 
-    session[:ratings] = @ratings_to_show
+    # session[:ratings] = @ratings_to_show
     session[:full_ratings] = params[:ratings]
     session[:sorting_column] = @sorting
 
