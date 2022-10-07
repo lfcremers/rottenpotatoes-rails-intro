@@ -38,7 +38,7 @@ class MoviesController < ApplicationController
     end
 
     if session[:ratings] and not params[:ratings]
-      @ratings_to_show = session[:ratings]
+      @ratings_to_show = session[:ratings].keys
       params[:ratings] = session[:full_ratings]
     end
 
